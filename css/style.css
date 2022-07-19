@@ -198,7 +198,9 @@ footer ul{
 footer p{
 	text-align: center;
 }
-
+.search{
+	border-style:solid;
+}
 #latest .thehead .col-md-4 p{
 	margin-bottom: 0px;
     margin-top: 25px;
