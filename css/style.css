@@ -199,7 +199,8 @@ footer p{
 	text-align: center;
 }
 .search{
-	border-style:double;
+	border-style: double;
+	border-width: 5px;
 }
 #latest .thehead .col-md-4 p{
 	margin-bottom: 0px;
