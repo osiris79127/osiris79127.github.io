@@ -14,65 +14,186 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&family=Open+Sans:wght@300&display=swap" rel="stylesheet">
   <title>設香</title>
+  <script>
+    (function(document){
+      'use strict';
+        var LightTableFilter=(function(Arr){
+          var _input;
+            function _onInputEvent(e){
+              _input=e.target;
+              var tables=document.getElementsByClassName(_input.getAttribute('data-table'));
+              Arr.forEach.call(tables,function(table){
+                Arr.forEach.call(table.tBodies,function(tbody){
+                  Arr.forEach.call(tbody.rows,_filter);
+                });
+              });
+            }
+          function _filter(row){
+            var text=row.textContent.toLowerCase(),val=_input.value.toLowerCase();
+            row.style.display=text.indexOf(val)===-1?'none':'table-row';
+          }
+          return{
+            init:function(){
+              var inputs=document.getElementsByClassName('light-table-filter');
+              Arr.forEach.call(inputs,function(input){
+                input.oninput=_onInputEvent;
+              });
+            }
+          };
+        })(Array.prototype);
+      document.addEventListener('readystatechange',function(){
+        if (document.readyState==='complete'){
+          LightTableFilter.init();
+        }
+      });
+    })(document);
+  </script>
 </head>
 <body>
   <header>
     <div class="container">
-      <nav id="navdef" class="navbar navbar-expand-lg bg-body">
-        <div class="container">            
-          <a class="navbar-brand" href="https://osiris79127.github.io/">
-            <img src="pictures/logo.png">
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="https://www.instagram.com/ccwwss165/">攝影IG</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="https://shopee.tw/suv8888">冠亦</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="http://www.missjo.com.tw/chunfeng/">綠樣小舖</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="https://www.sese.tw/">順億</a>
-              </li>                
-            </ul>              
+      <nav class="navbar navbar-expand-lg bg-body">
+        <div class="container">
+          <div id="logo">
+            <a href="#">
+              <img src="pictures/logo.png">
+            </a>
+          </div>
+          <div id="hamber">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+          <div class="justify-content-end">
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">            
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="https://www.instagram.com/ccwwss165/">人像攝影</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="https://www.instagram.com/ccwwss_165/">商品攝影</a>
+                </li>            
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                香精購買連結</a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="https://shopee.tw/suv8888">冠亦</a></li>
+                    <li><a class="dropdown-item" href="http://www.missjo.com.tw/chunfeng/">綠樣小舖</a></li>
+                    <li><a class="dropdown-item" href="https://www.sese.tw/">順億</a></li>
+                  </ul>
+                </li>               
+              </ul>
+            </div>                   
           </div>
         </div>
-      </nav>
-    </div>
-</header>
-    <section id="intro">        
-        <div class="container-fluid bg-light p-5">
-        <div class="container">
-            <div class="col-md-12">
-                <h1 class="display-4">股票爬蟲</h1>
-                <p class="lead">證交所爬蟲</p>
-                <a class="btn btn-primary btn-lg" href="#" role="button">開始爬蟲</a>
-            </div>
-        </div>
-        </div>
-    </section>
-    <section id="second">        
-      <div class="container">
-        <div class="row">
-            <div class="col-md-8 offset-md-2 text-center">
-               <div class="row">
-                <div class="col-md-4">
-                  123
-                </div>
-                <div class="col-md-8">
-                  456
-                </div>
-               </div> 
-            </div>
-        </div>
+      </nav>  
+    </div>  
+  </header>
+  <section id="intro">
+    <div class="container-fluid bg-dark p-5">
+      <div class="col-md-12">
+        <h1 class="display-4 text-white">設香</h1>
+        <p class="lead text-warning">這是一個分享疊香和香精混搭的小網站，香精購買連結處有小編常購買的香精位置，小編也是個攝影師，歡迎追蹤我們的人像和商品攝影IG。</p>
       </div>
+    </div>
   </section>
-
+  <section id="second">        
+    <div class="container">
+      <div class="container">
+        <input type="search" class="light-table-filter" data-table="order-table" placeholder="輸入名稱進行搜尋">
+      </div>
+      <table class="order-table">
+        <thead>
+          <tr>
+            <th class="setup">香水or香精組合</th>
+            <th class="desc">描述</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--以下是新增時的範本
+          <tr>
+            <td class="setup">
+              <ul>
+                <li>
+                  名稱
+                </li>
+                <li>
+                  名稱
+                </li>
+              </ul>
+            </td>
+            <td class="desc">形容</td>
+          </tr>
+          -->
+          <tr>
+            <td class="setup">
+              <ul>
+                <li>
+                  L'Artisan Passage D'Enfer 阿蒂仙 冥府之路
+                </li>
+                <li>
+                  Versace Eau Fraiche 凡賽斯 雲淡風輕
+                </li>
+              </ul>
+            </td>
+            <td class="desc">把一切都看得雲淡風輕後，才能在冥府之路上走的瀟灑，兩支感覺起來很不搭的香水，在這形容後有了關聯。</td>
+          </tr>
+          <tr>
+            <td class="setup">
+              <ul>
+                <li>
+                  Sean John I AM KING 吹牛老爹 王者之風 
+                </li>
+                <li>
+                  Tom Ford SOLEIL BRÛLANT 湯姆福特 金色島嶼
+                </li>
+              </ul>
+            </td>
+            <td class="desc">夏天很活潑，冬天很溫暖，奶油小生的溫暖組合。</td>
+          </tr>
+          <tr>
+            <td class="setup">
+              <ul>
+                <li>
+                  綠樣小舖 橡樹
+                </li>
+                <li>
+                  順億 香根草
+                </li>
+              </ul>
+            </td>
+            <td class="desc">小編的第一支本命香是Paul Smith Story，有種舊書的味道，很適合下午去逛二手書店，戴著眼鏡讓陽光灑落在身上的文藝青年，可惜已經絕版了，這組合是目前覺得最像的。</td>
+          </tr>
+          <tr>
+            <td class="setup">
+              <ul>
+                <li>
+                  Burberry Touch 博柏利 接觸
+                </li>
+                <li>
+                  Byredo Super Cedar 百瑞德 北國之春
+                </li>
+              </ul>
+            </td>
+            <td class="desc">花香加木質的雙重溫暖，冬天暖男專用。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <div class="container">
+    <div class="row justify-content-end">
+      <div class="col-md-2 ">
+        <h1 class="display-8 text-black">聯絡我</h1>      
+      </div>
+      <div class="col-md-1">
+        <a href="https://www.facebook.com/osiris.han">
+          <i class="fa-brands fa-facebook fa-3x"></i></a>
+      </div>   
+    </div>
+  </div>
+  <footer>
+    <p>版權所有，翻印必究。</p>
+  </footer>
 </body>
 </html>

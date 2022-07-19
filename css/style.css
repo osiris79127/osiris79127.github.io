@@ -7,11 +7,40 @@ p,a,span,li,label{
 img{
 	max-width:100%;
 }
-#navdef{
-	width: 100%;
+.nav-item .nav-link:hover{
+	background-color: rgb(0, 0, 0);
+  	color: rgb(255, 255, 255);
+}
+.dropdown-menu .dropdown-item:hover{
+	background-color: rgb(0, 0, 255);
+  	color: rgb(255, 255, 0);
 }
 nav li{
 	    margin: 0 13px;
+}
+.navbar .container{
+	position: relative;
+	top: 0%;  
+	left: 50%;
+	transform: translate(-50%, 0%);
+}
+#logo{
+	position: relative;
+	top: 0%;  
+	left: 50%;
+	transform: translate(-50%, 0%);
+}
+#hamber{
+	position: relative;
+	top: 0%;  
+	left: 50%;
+	transform: translate(-200%, 0%);
+}
+.setup{
+	padding: 30px;
+}
+.desc{
+	padding: 30px;
 }
 #intro .jumbotron{
 	background: url('../pictures/mainbg.png');
@@ -165,9 +194,11 @@ footer ul{
 }
 #latest .thehead p{
     margin-bottom: 80px;
-
-
 }
+footer p{
+	text-align: center;
+}
+
 #latest .thehead .col-md-4 p{
 	margin-bottom: 0px;
     margin-top: 25px;
